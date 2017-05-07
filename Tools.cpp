@@ -48,7 +48,7 @@ bool Tools::optinit(int arg, char **argv) {
 
 void Tools::usage() {
     puts("Usage:LogCollector --logfile pathtolog");
-    puts("                   --outputype [screen]");
+    puts("                   --outputype [screen|redis]");
 }
 
 unsigned long Tools::getEnds(char *pathfile) {
@@ -69,4 +69,11 @@ unsigned long long Tools::stoull(std::string str) {
     std::istringstream is(str);
     is >> result;
     return result;
+}
+
+void Tools::debug() {
+    std::string temp;
+    getline(std::cin, temp);
+    std::cout << temp << std::endl;
+    std::cout << "return:" << out.redis_Command(temp) << std::endl;
 }

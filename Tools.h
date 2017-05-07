@@ -21,13 +21,15 @@ public:
     static std::string ltos(long l);
 
     static unsigned long long stoull(std::string str);
+
+    static void debug();
 };
 
 const struct option long_options[] = {
-        {"logfile",       required_argument, NULL, CONFIG_LOGFILE},
-        {"outputype",     required_argument, NULL, CONFIG_OUTPUTYPE},
-        {"redishost",     required_argument, NULL, CONFIG_REDISHOST},
-        {"redisport",     required_argument, NULL, CONFIG_REDISPORT},
-        {"redispassword", required_argument, NULL, CONFIG_REDISPASSWORD},
+        {"logfile",        required_argument, NULL, CONFIG_LOGFILE},
+        {"outputype",      required_argument, NULL, CONFIG_OUTPUTYPE},
+        {"redis_host",     required_argument, NULL, CONFIG_REDISHOST},
+        {"redis_port",     required_argument, NULL, CONFIG_REDISPORT},
+        {"redis_password", required_argument, NULL, CONFIG_REDISPASSWORD},
 };
 #endif //LOGCOLLECTOR_TOOLS_H

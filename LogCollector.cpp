@@ -3,24 +3,22 @@
 #include <cstring>
 #include "Tools.h"
 #include "FileTools.h"
-#include "OutPut.h"
 
 Option option_my;
 Logfile logfile;
 Logfile runlog;
 FileTools ftrunlog;
 FileTools f;
-
+OutPut out;
 int main(int args, char *argv[]) {
     unsigned int itemp;
     std::string temps;
     char *tempc;
-    OutPut out;
     if (Tools::optinit(args, argv) != 0) {
         Tools::usage();
         return itemp;
     }
-
+    out.init();
     if (init() != 0)
         return 0;
     std::cout << runlog.readrow << std::endl;
@@ -29,11 +27,13 @@ int main(int args, char *argv[]) {
         if (f.eof) {
             exit(0);
         }
+        // Tools::debug();
         if (f.readpline >= runlog.readrow) {
             std::cout << f.readpline << std::endl;
             out.output(f.readtemp);
             ftrunlog.fileappend(Tools::ltos(f.readpline) + "\n");
         }
+
     }
 
     return 0;

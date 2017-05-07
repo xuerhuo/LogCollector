@@ -11,14 +11,18 @@
 
 class OutPut {
     void screen_output(std::string value);
+
+    void redis_output(std::string value);
 public:
     redisContext *redis;
     bool redisinited;
+    redisReply *redisreply;
 
-    OutPut();
+    void init();
     void output(std::string value);
-
     void redisinit();
+
+    std::string redis_Command(std::string cmd);
 };
 
 

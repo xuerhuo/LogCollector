@@ -4,13 +4,16 @@
 
 #ifndef LOGCOLLECTOR_LOCOLECTOR_H
 #define LOGCOLLECTOR_LOCOLECTOR_H
+
+#include "OutPut.h"
+
 typedef struct options {
     char *logfile = NULL;
     char *readtype = NULL;
-    char *outputype;
-    char *redishost;
-    char *redisport;
-    char *redispassword;
+    char *outputype = NULL;
+    char *redishost = NULL;
+    char *redisport = NULL;
+    char *redispassword = NULL;
 } Option;
 enum {
     CONFIG_READTYPE, CONFIG_OUTPUTYPE, CONFIG_LOGFILE, CONFIG_REDISHOST, CONFIG_REDISPORT, CONFIG_REDISPASSWORD
@@ -24,7 +27,7 @@ typedef struct logFile {
     unsigned long long coutline = 0;
 } Logfile;
 extern Logfile logfile, runlog;
-
+extern OutPut out;
 int init();
 
 #endif //LOGCOLLECTOR_LOCOLECTOR_H
