@@ -3,6 +3,7 @@
 #include <cstring>
 #include "Tools.h"
 #include "FileTools.h"
+#include "base64.h"
 
 Option option_my;
 Logfile logfile;
@@ -10,6 +11,7 @@ Logfile runlog;
 FileTools ftrunlog;
 FileTools f;
 OutPut out;
+std::string sendbuffer;
 int main(int args, char *argv[]) {
     unsigned int itemp;
     std::string temps;
@@ -25,12 +27,20 @@ int main(int args, char *argv[]) {
     while (1) {
         f.getoneline();
         if (f.eof) {
+            out.output(sendbuffer);
+            std::cout << sendbuffer << std::endl;
             exit(0);
         }
         // Tools::debug();
         if (f.readpline >= runlog.readrow) {
-            std::cout << f.readpline << std::endl;
-            out.output(f.readtemp);
+            sendbuffer +=
+                    base64_encode(reinterpret_cast<const unsigned char *>(f.readtemp.c_str()), f.readtemp.length()) +
+                    " ";
+            if (f.readpline % 1 == 0) {
+                std::cout << f.readpline << std::endl;
+                out.output(sendbuffer);
+                sendbuffer = "";
+            }
             ftrunlog.fileappend(Tools::ltos(f.readpline) + "\n");
         }
 

@@ -7,6 +7,10 @@
 #include "OutPut.h"
 #include "LogCollector.h"
 
+
+class e {
+};
+
 void OutPut::init() {
     if (strcmp(option_my.outputype, "redis") == 0) {
         this->redisinit();
@@ -29,7 +33,7 @@ void OutPut::screen_output(std::string value) {
 }
 
 void OutPut::redis_output(std::string value) {
-    this->redis_Command("sadd test " + value);
+    this->redis_Command("lpush test " + value);
 }
 
 void OutPut::redisinit() {
@@ -61,7 +65,16 @@ void OutPut::redisinit() {
 std::string OutPut::redis_Command(std::string cmd) {
     std::string temp;
     this->redisreply = (redisReply *) redisCommand(this->redis, cmd.c_str());
-    temp = this->redisreply->str ? this->redisreply->str : temp;
+    if (this->redisreply == NULL) {
+        puts("excute error");
+    } else if (this->redisreply->type == REDIS_REPLY_INTEGER) {//return from integer
+        temp = std::to_string(this->redisreply->integer);
+    } else if (this->redisreply->type == REDIS_REPLY_STATUS) {//return from str
+        temp = this->redisreply->str;
+    } else if (this->redisreply->type == REDIS_REPLY_ERROR) {//has error
+        temp = this->redisreply->str;
+        exit(1);
+    }
     //freeReplyObject(this->redisreply);
     return temp;
 }
