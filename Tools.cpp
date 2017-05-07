@@ -26,6 +26,15 @@ bool Tools::optinit(int arg, char **argv) {
             case CONFIG_OUTPUTYPE:
                 option_my.outputype = optarg;
                 break;
+            case CONFIG_REDISHOST:
+                option_my.redishost = optarg;
+                break;
+            case CONFIG_REDISPORT:
+                option_my.redisport = optarg;
+                break;
+            case CONFIG_REDISPASSWORD:
+                option_my.redispassword = optarg;
+                break;
             default:
                 return -1;
         }

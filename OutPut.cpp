@@ -6,20 +6,15 @@
 #include <cstring>
 #include "OutPut.h"
 #include "LogCollector.h"
-#include "lib/hiredis/hiredis.h"
 
+OutPut::OutPut() {
+    if (strcmp(option_my.outputype, "redis") == 0) {
+        this->redisinit();
+    }
+}
 void OutPut::output(std::string value) {
     if (strcmp(option_my.outputype, "screen") == 0) {
         this->screen_output(value);
-    }
-    redisContext *c = redisConnect("127.0.0.1", 6379);
-    if (c == NULL || c->err) {
-        if (c) {
-            printf("Error: %s\n", c->errstr);
-            // handle error
-        } else {
-            printf("Can't allocate redis context\n");
-        }
     }
 }
 
@@ -27,4 +22,16 @@ void OutPut::screen_output(std::string value) {
     std::cout << value << std::endl;
 }
 
-#pragma clang diagnostic pop
+void OutPut::redisinit() {
+    this->redis = redisConnect("118.89.221.134", 6379);
+    if (this->redis == NULL || this->redis->err != 0) {
+        if (this->redis) {
+            printf("Error: %s\n", this->redis->errstr);
+            // handle error
+        } else {
+            printf("Can't allocate redis context\n");
+        }
+        this->redisinited = false;
+    }
+    this->redisinited = true;
+}
