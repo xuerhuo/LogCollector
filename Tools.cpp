@@ -50,6 +50,7 @@ bool Tools::optinit(int arg, char **argv) {
 void Tools::usage() {
     puts("Usage:LogCollector --logfile pathtolog");
     puts("                   --outputype [screen|redis]");
+    puts("                   --redis_host host");
 }
 
 unsigned long Tools::getEnds(char *pathfile) {
