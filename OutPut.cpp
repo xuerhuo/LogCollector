@@ -7,10 +7,6 @@
 #include "OutPut.h"
 #include "LogCollector.h"
 
-
-class e {
-};
-
 void OutPut::init() {
     if (strcmp(option_my.outputype, "redis") == 0) {
         this->redisinit();

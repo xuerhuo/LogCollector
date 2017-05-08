@@ -2,8 +2,6 @@
 #include <unistd.h>
 #include <cstring>
 #include "Tools.h"
-#include "FileTools.h"
-#include "base64.h"
 
 Option option_my;
 Logfile logfile;
@@ -25,24 +23,25 @@ int main(int args, char *argv[]) {
         return 0;
     std::cout << runlog.readrow << std::endl;
     while (1) {
-        f.getoneline();
+        Tools::debug();
+/*        f.getoneline();
         if (f.eof) {
             out.output(sendbuffer);
             std::cout << sendbuffer << std::endl;
             exit(0);
+            sleep(1000);
+            std::cout<<"sleep"<<std::endl;
         }
-        // Tools::debug();
+
         if (f.readpline >= runlog.readrow) {
-            sendbuffer +=
-                    base64_encode(reinterpret_cast<const unsigned char *>(f.readtemp.c_str()), f.readtemp.length()) +
-                    " ";
+            sendbuffer += base64_encode(reinterpret_cast<const unsigned char *>(f.readtemp.c_str()), f.readtemp.length()) + " ";
             if (f.readpline % 1 == 0) {
                 std::cout << f.readpline << std::endl;
                 out.output(sendbuffer);
                 sendbuffer = "";
             }
             ftrunlog.fileappend(Tools::ltos(f.readpline) + "\n");
-        }
+        }*/
 
     }
 

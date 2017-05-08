@@ -5,6 +5,7 @@
 #include <iostream>
 #include <cstring>
 #include <sstream>
+#include <unistd.h>
 #include "Tools.h"
 
 void Tools::printarray(int len, char **arr) {
@@ -72,8 +73,12 @@ unsigned long long Tools::stoull(std::string str) {
 }
 
 void Tools::debug() {
-    std::string temp;
-    getline(std::cin, temp);
-    std::cout << temp << std::endl;
-    std::cout << "return:" << out.redis_Command(temp) << std::endl;
+    f.getoneline();
+    //std::cout<<"sleep:"<<f.ReadFile.tellg()<<std::endl;
+    sleep(1);
+    if (f.readtemp == "") {
+        sleep(1);
+    } else {
+        std::cout << f.readtemp << std::endl;
+    }
 }

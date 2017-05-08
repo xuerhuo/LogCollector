@@ -85,6 +85,8 @@ void FileTools::fileappend(std::string append) {
 
 std::string FileTools::getoneline() {
     std::string temp;
+    this->lastreadpoint = this->ReadFile.tellg();
+    //std::cout<<"pointlast:"<<this->lastreadpoint<<std::endl;
     if (std::getline(this->ReadFile, this->readtemp)) {
         this->eof = false;
     } else {
@@ -92,7 +94,17 @@ std::string FileTools::getoneline() {
         this->eof = true;
         this->readtemp = "0";
     }
-    this->readpline++;
+    this->ReadFile.seekg(-1, std::ios::cur);
+    char c = this->ReadFile.peek();
+    this->ReadFile.seekg(1, std::ios::cur);
+    if (c != 0x0a) {//LF
+        //std::cout<<"pointnow:"<<this->ReadFile.tellg()<<"contetn:"+this->readtemp<<this->ReadFile.peek()<<std::endl;
+        this->ReadFile.seekg(this->lastreadpoint);
+        //std::cout<<"pointmoved:"<<this->ReadFile.tellg()<<"contetn:"+this->readtemp<<std::endl;
+        this->readtemp = "";
+    } else {
+        this->readpline++;
+    }
     return this->readtemp;
 }
 

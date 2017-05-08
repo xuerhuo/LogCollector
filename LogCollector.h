@@ -6,6 +6,7 @@
 #define LOGCOLLECTOR_LOCOLECTOR_H
 
 #include "OutPut.h"
+#include "FileTools.h"
 
 typedef struct options {
     char *logfile = NULL;
@@ -28,6 +29,7 @@ typedef struct logFile {
 } Logfile;
 extern Logfile logfile, runlog;
 extern OutPut out;
+extern FileTools f;
 int init();
 
 #endif //LOGCOLLECTOR_LOCOLECTOR_H

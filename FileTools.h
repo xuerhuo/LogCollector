@@ -27,6 +27,8 @@ public:
     void clear();
 
     std::string getoneline();
+
+    std::fpos<mbstate_t> lastreadpoint;
 };
 
 
