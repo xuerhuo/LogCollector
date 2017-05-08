@@ -75,10 +75,9 @@ unsigned long long Tools::stoull(std::string str) {
 void Tools::debug() {
     f.getoneline();
     //std::cout<<"sleep:"<<f.ReadFile.tellg()<<std::endl;
-    sleep(1);
-    if (f.readtemp == "") {
-        sleep(1);
+    if (f.eof) {
+        usleep(100);
     } else {
-        std::cout << f.readtemp << std::endl;
+        std::cout << f.readpline << f.readtemp << std::endl;
     }
 }

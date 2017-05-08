@@ -92,15 +92,16 @@ std::string FileTools::getoneline() {
     } else {
         //std::cout<<temp<<std::endl;
         this->eof = true;
-        this->readtemp = "0";
+        this->readtemp = "";
+        this->ReadFile.clear();
     }
     this->ReadFile.seekg(-1, std::ios::cur);
     char c = this->ReadFile.peek();
     this->ReadFile.seekg(1, std::ios::cur);
-    if (c != 0x0a) {//LF
-        //std::cout<<"pointnow:"<<this->ReadFile.tellg()<<"contetn:"+this->readtemp<<this->ReadFile.peek()<<std::endl;
-        this->ReadFile.seekg(this->lastreadpoint);
-        //std::cout<<"pointmoved:"<<this->ReadFile.tellg()<<"contetn:"+this->readtemp<<std::endl;
+    char d = this->ReadFile.peek();
+    if (c != 0x0a || d == -1) {//LF and not last row
+        this->eof = true;
+        this->ReadFile.seekg(this->lastreadpoint, std::ios::beg);
         this->readtemp = "";
     } else {
         this->readpline++;
