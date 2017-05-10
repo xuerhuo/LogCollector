@@ -14,6 +14,7 @@ void OutPut::init() {
             exit(-1);
         }
     }
+    logrediskey = option_my.logrediskey;
 }
 void OutPut::output(std::string value) {
     if (strcmp(option_my.outputype, "screen") == 0) {
@@ -29,7 +30,7 @@ void OutPut::screen_output(std::string value) {
 }
 
 void OutPut::redis_output(std::string value) {
-    this->redis_Command("lpush test " + value);
+    this->redis_Command("lpush " + logrediskey + " " + value);
 }
 
 void OutPut::redisinit() {
@@ -63,12 +64,15 @@ std::string OutPut::redis_Command(std::string cmd) {
     this->redisreply = (redisReply *) redisCommand(this->redis, cmd.c_str());
     if (this->redisreply == NULL) {
         puts("excute error");
+        exit(-1);
     } else if (this->redisreply->type == REDIS_REPLY_INTEGER) {//return from integer
         temp = std::to_string(this->redisreply->integer);
     } else if (this->redisreply->type == REDIS_REPLY_STATUS) {//return from str
         temp = this->redisreply->str;
     } else if (this->redisreply->type == REDIS_REPLY_ERROR) {//has error
         temp = this->redisreply->str;
+        exit(1);
+    } else {
         exit(1);
     }
     //freeReplyObject(this->redisreply);

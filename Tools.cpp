@@ -36,6 +36,9 @@ bool Tools::optinit(int arg, char **argv) {
             case CONFIG_REDISPASSWORD:
                 option_my.redispassword = optarg;
                 break;
+            case CONFIG_LOGREDISKEY:
+                option_my.logrediskey = optarg;
+                break;
             default:
                 return -1;
         }

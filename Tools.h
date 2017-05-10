@@ -31,5 +31,6 @@ const struct option long_options[] = {
         {"redis_host",     required_argument, NULL, CONFIG_REDISHOST},
         {"redis_port",     required_argument, NULL, CONFIG_REDISPORT},
         {"redis_password", required_argument, NULL, CONFIG_REDISPASSWORD},
+        {"logrediskey",    required_argument, NULL, CONFIG_LOGREDISKEY},
 };
 #endif //LOGCOLLECTOR_TOOLS_H

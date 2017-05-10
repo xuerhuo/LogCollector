@@ -2,6 +2,7 @@
 #include <unistd.h>
 #include <cstring>
 #include "Tools.h"
+#include "base64.h"
 
 Option option_my;
 Logfile logfile;
@@ -9,7 +10,7 @@ Logfile runlog;
 FileTools ftrunlog;
 FileTools f;
 OutPut out;
-std::string sendbuffer;
+std::string sendbuffer = "";
 int main(int args, char *argv[]) {
     unsigned int itemp;
     std::string temps;
@@ -23,25 +24,23 @@ int main(int args, char *argv[]) {
         return 0;
     std::cout << runlog.readrow << std::endl;
     while (1) {
-        Tools::debug();
-/*        f.getoneline();
+        //Tools::debug();
+        f.getoneline();
         if (f.eof) {
-            out.output(sendbuffer);
-            std::cout << sendbuffer << std::endl;
-            exit(0);
-            sleep(1000);
-            std::cout<<"sleep"<<std::endl;
-        }
+            sleep(1);
+        } else {
 
-        if (f.readpline >= runlog.readrow) {
-            sendbuffer += base64_encode(reinterpret_cast<const unsigned char *>(f.readtemp.c_str()), f.readtemp.length()) + " ";
-            if (f.readpline % 1 == 0) {
-                std::cout << f.readpline << std::endl;
-                out.output(sendbuffer);
-                sendbuffer = "";
+            if (f.readpline >= runlog.readrow) {
+                sendbuffer += base64_encode(reinterpret_cast<const unsigned char *>(f.readtemp.c_str()),
+                                            f.readtemp.length()) + " ";
+                if (f.readpline % 1 == 0) {
+                    std::cout << f.readtemp << std::endl;
+                    out.output(sendbuffer);
+                    sendbuffer = "";
+                }
+                ftrunlog.fileappend(Tools::ltos(f.readpline) + "\n");
             }
-            ftrunlog.fileappend(Tools::ltos(f.readpline) + "\n");
-        }*/
+        }
 
     }
 

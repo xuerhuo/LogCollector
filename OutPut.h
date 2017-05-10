@@ -23,6 +23,8 @@ public:
     void redisinit();
 
     std::string redis_Command(std::string cmd);
+
+    std::string logrediskey;
 };
 
 

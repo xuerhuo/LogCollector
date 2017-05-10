@@ -15,9 +15,10 @@ typedef struct options {
     char *redishost = NULL;
     char *redisport = NULL;
     char *redispassword = NULL;
+    char *logrediskey = NULL;
 } Option;
 enum {
-    CONFIG_READTYPE, CONFIG_OUTPUTYPE, CONFIG_LOGFILE, CONFIG_REDISHOST, CONFIG_REDISPORT, CONFIG_REDISPASSWORD
+    CONFIG_LOGREDISKEY, CONFIG_OUTPUTYPE, CONFIG_LOGFILE, CONFIG_REDISHOST, CONFIG_REDISPORT, CONFIG_REDISPASSWORD
 };
 extern Option option_my;
 
