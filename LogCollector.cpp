@@ -34,7 +34,7 @@ int main(int args, char *argv[]) {
                 sendbuffer += base64_encode(reinterpret_cast<const unsigned char *>(f.readtemp.c_str()),
                                             f.readtemp.length()) + " ";
                 if (f.readpline % 1 == 0) {
-                    std::cout << f.readtemp << std::endl;
+                    //std::cout << f.readtemp << std::endl;
                     out.output(sendbuffer);
                     sendbuffer = "";
                 }
