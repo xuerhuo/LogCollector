@@ -32,7 +32,7 @@ const struct option long_options[] = {
         {"redis_port",     required_argument, NULL, CONFIG_REDISPORT},
         {"redis_password", required_argument, NULL, CONFIG_REDISPASSWORD},
         {"logrediskey",    required_argument, NULL, CONFIG_LOGREDISKEY},
-        {"ppushbuffernum", required_argument, NULL, CONFIG_PUSHBUFFERNUM},
-        {"preadrow",       required_argument, NULL, CONFIG_READROW},
+        {"pushbuffernum",  required_argument, NULL, CONFIG_PUSHBUFFERNUM},
+        {"readrow",        required_argument, NULL, CONFIG_READROW},
 };
 #endif //LOGCOLLECTOR_TOOLS_H
