@@ -39,6 +39,12 @@ bool Tools::optinit(int arg, char **argv) {
             case CONFIG_LOGREDISKEY:
                 option_my.logrediskey = optarg;
                 break;
+            case CONFIG_PUSHBUFFERNUM:
+                option_my.ppushbuffernum = optarg;
+                break;
+            case CONFIG_READROW:
+                option_my.preadrow = optarg;
+                break;
             default:
                 return -1;
         }
@@ -47,6 +53,8 @@ bool Tools::optinit(int arg, char **argv) {
         Tools::usage();
         exit(1);
     }
+    option_my.pushbuffernum = atol(option_my.ppushbuffernum);
+    option_my.readrow = atol(option_my.preadrow);
     return 0;
 }
 

@@ -28,12 +28,13 @@ int main(int args, char *argv[]) {
         f.getoneline();
         if (f.eof) {
             sleep(1);
+            out.output(sendbuffer);
         } else {
 
             if (f.readpline >= runlog.readrow) {
                 sendbuffer += base64_encode(reinterpret_cast<const unsigned char *>(f.readtemp.c_str()),
                                             f.readtemp.length()) + " ";
-                if (f.readpline % 1 == 0) {
+                if (f.readpline % option_my.pushbuffernum == 0) {
                     std::cout << f.readtemp << std::endl;
                     out.output(sendbuffer);
                     sendbuffer = "";
@@ -41,6 +42,15 @@ int main(int args, char *argv[]) {
                 ftrunlog.fileappend(Tools::ltos(f.readpline) + "\n");
             }
         }
+
+        if (option_my.readrow > 0 && (f.readpline - runlog.readrow) >= option_my.readrow) {
+            //read lines exit
+            if (sendbuffer.length() > 0) {
+                out.output(sendbuffer);
+            }
+            exit(0);
+        }
+
 
     }
 
