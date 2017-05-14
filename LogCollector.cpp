@@ -43,7 +43,7 @@ int main(int args, char *argv[]) {
             }
         }
 
-        if (option_my.readrow > 0 && (f.readpline - runlog.readrow) >= option_my.readrow) {
+        if (option_my.readrow > 0 && (long long) (f.readpline - runlog.readrow) >= option_my.readrow) {
             //read lines exit
             if (sendbuffer.length() > 0) {
                 out.output(sendbuffer);
