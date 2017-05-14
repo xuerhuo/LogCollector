@@ -16,9 +16,9 @@ typedef struct options {
     char *redisport = NULL;
     char *redispassword = NULL;
     char *logrediskey = NULL;
-    char *ppushbuffernum = "1";
+    char *ppushbuffernum = NULL;
     long pushbuffernum = 1;
-    char *preadrow = "0";
+    char *preadrow = NULL;
     long readrow = 0;
 } Option;
 enum {
