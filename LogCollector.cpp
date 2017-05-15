@@ -36,8 +36,7 @@ int main(int args, char *argv[]) {
 
             if (f.readpline >= runlog.readrow) {
                 sendbuffer += base64_encode(reinterpret_cast<const unsigned char *>(f.readtemp.c_str()),
-                                            f.readtemp.length())
-                f.readtemp + " ";
+                                            f.readtemp.length()) + " ";
                 if (f.readpline % option_my.pushbuffernum == 0) {
                     //std::cout << f.readtemp << std::endl;
                     out.output(sendbuffer);
