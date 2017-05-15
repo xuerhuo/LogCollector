@@ -71,8 +71,10 @@ std::string OutPut::redis_Command(std::string cmd) {
         temp = this->redisreply->str;
     } else if (this->redisreply->type == REDIS_REPLY_ERROR) {//has error
         temp = this->redisreply->str;
+        std::cout << "redis has error info:" << temp << std::end;
         exit(1);
     } else {
+        std::cout << "unkonw error with redis" << std::end;
         exit(1);
     }
     //freeReplyObject(this->redisreply);
