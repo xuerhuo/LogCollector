@@ -25,7 +25,6 @@ int main(int args, char *argv[]) {
     std::cout << runlog.readrow << std::endl;
     while (1) {
         //Tools::debug();
-        std::cout << f.readpline << std::endl;
         f.getoneline();
         if (f.eof) {
             sleep(1);
