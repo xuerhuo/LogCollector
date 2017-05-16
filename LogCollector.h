@@ -20,6 +20,8 @@ typedef struct options {
     long pushbuffernum = 1;
     char *preadrow = NULL;
     long readrow = 0;
+    char *predismaxnum;
+    long redismaxnum = 0;
 } Option;
 enum {
     CONFIG_LOGREDISKEY,
@@ -29,7 +31,8 @@ enum {
     CONFIG_REDISPORT,
     CONFIG_REDISPASSWORD,
     CONFIG_PUSHBUFFERNUM,
-    CONFIG_READROW
+    CONFIG_READROW,
+    CONFIG_REDISMAXNUM
 };
 extern Option option_my;
 

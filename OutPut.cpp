@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include <cstring>
+#include <unistd.h>
 #include "OutPut.h"
 #include "LogCollector.h"
 
@@ -30,6 +31,12 @@ void OutPut::screen_output(std::string value) {
 }
 
 void OutPut::redis_output(std::string value) {
+    std::string temp = option_my.logrediskey;
+    this->redis_Command("llen " + temp);
+    while (this->redisreply->integer >= option_my.redismaxnum) {
+        sleep(2);
+        this->redis_Command("llen " + temp);
+    }
     this->redis_Command("lpush " + logrediskey + " " + value);
 }
 

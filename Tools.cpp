@@ -45,6 +45,9 @@ bool Tools::optinit(int arg, char **argv) {
             case CONFIG_READROW:
                 option_my.preadrow = optarg;
                 break;
+            case CONFIG_REDISMAXNUM:
+                option_my.predismaxnum = optarg;
+                break;
             default:
                 return -1;
         }
@@ -55,6 +58,7 @@ bool Tools::optinit(int arg, char **argv) {
     }
     option_my.pushbuffernum = atol(option_my.ppushbuffernum);
     option_my.readrow = atol(option_my.preadrow);
+    option_my.redismaxnum = atol(option_my.predismaxnum);
     return 0;
 }
 

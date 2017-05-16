@@ -34,5 +34,6 @@ const struct option long_options[] = {
         {"logrediskey",    required_argument, NULL, CONFIG_LOGREDISKEY},
         {"pushbuffernum",  required_argument, NULL, CONFIG_PUSHBUFFERNUM},
         {"readrow",        required_argument, NULL, CONFIG_READROW},
+        {"redis_maxnum",   required_argument, NULL, CONFIG_REDISMAXNUM},
 };
 #endif //LOGCOLLECTOR_TOOLS_H
